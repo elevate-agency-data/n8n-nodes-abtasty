@@ -1,0 +1,60 @@
+{
+  "name": "n8n-nodes-abtasty",
+  "version": "1.0.0",
+  "description": "Node N8N to interact with AB Tasty",
+  "keywords": [
+    "n8n-community-node-package",
+    "abtasty",
+    "abtasty-node",
+    "abtasty-n8n",
+    "abtasty-n8n-node",
+    "abtasty-n8n-node-package"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/elevate-agency-data/n8n-nodes-abtasty",
+  "author": {
+    "name": "elevate_agency",
+    "email": "conseil@elevate-agency.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elevate-agency-data/n8n-nodes-abtasty.git"
+  },
+  "engines": {
+    "node": ">=18.10",
+    "pnpm": ">=9.1"
+  },
+  "packageManager": "pnpm@9.1.4",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/AbTastyApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/AbTasty/AbTasty.node.js"
+    ]
+  },
+ "devDependencies": {
+    "@typescript-eslint/parser": "~5.45",
+    "eslint-plugin-n8n-nodes-base": "^1.11.0",
+    "gulp": "^5.0.0",
+    "n8n-workflow": "*",
+    "prettier": "^2.7.1",
+    "typescript": "~4.8.4"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
