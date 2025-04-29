@@ -94,7 +94,7 @@ export class AbTasty implements INodeType {
 				displayName: 'Account ID',
 				name: 'accountId',            
 				type: 'number',
-				default: 12345
+				default: ''
 			},	  
 			{
 				displayName: 'Test ID',
@@ -162,159 +162,173 @@ export class AbTasty implements INodeType {
         displayOptions:{ show:{ operation:['universalDataConnectorAPIVisitorSegmentsList'] } }
 			},
       {
-        displayName: 'Query Parameters',
-        name: 'queryParameters',
+        displayName: 'Filters',
+        name: 'filters',
         type: 'collection',
-        placeholder: 'Add Parameter',
+        placeholder: 'Add Filter',
         default:{},
-        displayOptions:{ show:{ operation:['publicAPITestsList', 'publicAPIUsersList'] } },
+        displayOptions:{ show:{ operation:['publicAPIEventsList', 'publicAPIModificationsList', 'publicAPITestsGet', 'publicAPITestsList', 'publicAPIThirdPartyToolsList', 'publicAPIUsersList'] } },
         options:[
           {
-            displayName: 'Filter Active',
-            name: 'filter[active]',
+            displayName: 'Active',
+            name: 'filter%5Bactive%5D',
             description: '0 => pause ; 1 => play',
             type: 'options',
             options: [
               {
                 name: 'Pause',
-                value: 0,
+                value: 0
               },
               {
                 name: 'Play',
-                value: 1,
+                value: 1
               },
             ],
-            default: 1,
+            default: 1
           },
           {
-            displayName: 'Filter Exclude Tag',
-            name: 'filter[exclude_tag][]',
+            displayName: 'Exclude Tag',
+            name: 'filter%5Bexclude_tag%5D%5B%5D',
             description: 'Exclude specific tag of the collection',
             type: 'string',
-            default: '',
+            default: ''
           },
           {
-            displayName: 'Filter Folder',
-            name: 'filter[folder][]',
+            displayName: 'Folder',
+            name: 'filter%5Bfolder%5D%5B%5D',
             description: 'Search by folder ID (0 for no folder)',
             type: 'number',
-            default: 0,
+            default: 0
           },
           {
-            displayName: 'Filter Is Preprod',
-            name: 'filter[is_preprod]',
+            displayName: 'Is Preprod',
+            name: 'filter%5Bis_preprod%5D',
             description: 'Whether it is set or not, only preprod tests will be returned',
             type: 'boolean',
-            default: true,
+            default: true
           },
           {
-            displayName: 'Filter Is Schedule',
-            name: 'filter[is_schedule]',
+            displayName: 'Is Schedule',
+            name: 'filter%5Bis_schedule%5D',
             description: '0 -> test not schedule ; 1 -> test schedule',
             type: 'options',
             options: [
               {
                 name: 'Test Not Schedule',
-                value: 0,
+                value: 0
               },
               {
                 name: 'Test Schedule',
-                value: 1,
+                value: 1
               },
             ],
-            default: 1,
-          },
-          {
-            displayName: 'Filter Name',
-            name: 'filter[name]',
-            description: 'Search by name of the test',
-            type: 'string',
-            default: '',
-          },  
-          {
-            displayName: 'Filter Name or URL',
-            name: 'filter[name_or_url]',
-            description: 'Search by name and URL of the test',
-            type: 'string',
-            default: '',
-          },   
-          {
-            displayName: 'Filter Order ID',
-            name: 'filter[_order][id]',
-            description: 'Order collecion by ID',
-            type: 'options',
-            options: [
-              {
-                name: 'Ascending',
-                value: 'ASC',
-              },
-              {
-                name: 'Descending',
-                value: 'DESC',
-              },
-            ],
-            default: 'ASC',
-          },
-          {
-            displayName: 'Filter Order Name',
-            name: 'filter[_order][name]',
-            description: 'Order collection by name',
-            type: 'options',
-            options: [
-              {
-                name: 'Ascending',
-                value: 'ASC',
-              },
-              {
-                name: 'Descending',
-                value: 'DESC',
-              },
-            ],
-            default: 'ASC',
-          },             
-          {
-            displayName: 'Filter Parent',
-            name: 'filter[parent][]',
-            description: 'Search by parent ID (0 for no parent)',
-            type: 'number',
-            default: 0,
-          },
-          {
-            displayName: 'Filter Search',
-            name: 'filter[search]',
-            description: 'Search by name/URL/ID of the test',
-            type: 'string',
-            default: '',
-          },
-          {
-            displayName: 'Filter Tag',
-            name: 'filter[tag][]',
-            description: 'Only test with specific tag of the collection',
-            type: 'string',
-            default: '',
-          },
-          {
-            displayName: 'Filter Type',
-            name: 'filter[type][]',
-            description: 'Search by test type (ab,heatmap,mobileapp,mastersegment,multipage,multivariate,mvt,predictive,segmentation,subsegment,tunnel)',
-            type: 'string',
-            default: '',
+            default: 1
           },
           {
             displayName: 'Max Per Page',
             name: '_max_per_page',
             description: 'Limit of items per page',
             type: 'number',
-            default: 10,
+            default: 10
+          },
+          {
+            displayName: 'Modification Type',
+            name: 'filter%5Btype%5D',
+            description: 'Type of the global modification (plugin or actionTracking)',
+            type: 'string',
+            default: ''
+          },
+          {
+            displayName: 'Name',
+            name: 'filter%5Bname%5D',
+            description: 'Search by name of the test',
+            type: 'string',
+            default: ''
+          },  
+          {
+            displayName: 'Name or URL',
+            name: 'filter%5Bname_or_url%5D',
+            description: 'Search by name and URL of the test',
+            type: 'string',
+            default: ''
+          }, 
+          {
+            displayName: 'Operation',
+            name: 'filter%5Boperation%5D',
+            description: 'Search by operation of the modification',
+            type: 'string',
+            default: ''
+          },   
+          {
+            displayName: 'Order by ID',
+            name: 'filter%5B_order%5D%5Bid%5D',
+            description: 'Order collecion by ID',
+            type: 'options',
+            options: [
+              {
+                name: 'Ascending',
+                value: 'ASC'
+              },
+              {
+                name: 'Descending',
+                value: 'DESC'
+              },
+            ],
+            default: 'ASC'
+          },
+          {
+            displayName: 'Order by Name',
+            name: 'filter%5B_order%5D%5Bname%5D',
+            description: 'Order collection by name',
+            type: 'options',
+            options: [
+              {
+                name: 'Ascending',
+                value: 'ASC'
+              },
+              {
+                name: 'Descending',
+                value: 'DESC'
+              },
+            ],
+            default: 'ASC'
           },
           {
             displayName: 'Page',
             name: '_page',
             description: 'Page of the collection',
             type: 'number',
-            default: 10,
-          }          
-        ],
+            default: 10
+          },             
+          {
+            displayName: 'Parent',
+            name: 'filter%5Bparent%5D%5B%5D',
+            description: 'Search by parent ID (0 for no parent)',
+            type: 'number',
+            default: 0
+          },
+          {
+            displayName: 'Search',
+            name: 'filter%5Bsearch%5D',
+            description: 'Search by name/URL/ID of the test',
+            type: 'string',
+            default: ''
+          },
+          {
+            displayName: 'Tag',
+            name: 'filter%5Btag%5D%5B%5D',
+            description: 'Only test with specific tag of the collection',
+            type: 'string',
+            default: ''
+          },
+          {
+            displayName: 'Test Type',
+            name: 'filter%5Btype%5D%5B%5D',
+            description: 'Search by test type (ab,heatmap,mobileapp,mastersegment,multipage,multivariate,mvt,predictive,segmentation,subsegment,tunnel)',
+            type: 'string',
+            default: ''
+          }    
+        ]
       },
       {
         displayName: 'Request Body',
@@ -369,15 +383,16 @@ export class AbTasty implements INodeType {
         const csvFilePath =  this.getNodeParameter('csvFilePath', i, '') as string;
         const queryFlagship = this.getNodeParameter('queryFlagship', i, '') as string;
         const visitorId = this.getNodeParameter('visitorId', i, '') as string;
-        const queryParameters = this.getNodeParameter('queryParameters', i, {}) as Record<string, any>;
+        const filters = this.getNodeParameter('filters', i, {}) as Record<string, any>;
         const requestBody = this.getNodeParameter('requestBody', i, '') as string;
         
         let url = '';
-
+      
         const queryParams = new URLSearchParams();
-        Object.entries(queryParameters).forEach(([key, value]) => {
-          if (value) queryParams.append(key, String(value));
+        Object.entries(filters).forEach(([key, value]) => {
+          if (value !== '') queryParams.append(decodeURIComponent(key), String(value));
         });
+        
         const queryString = queryParams.toString() ? `?${queryParams.toString()}` : '';
 				
 				switch (resource) {
