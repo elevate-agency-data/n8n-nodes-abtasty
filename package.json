@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-abtasty",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Node N8N to interact with AB Tasty",
   "keywords": [
     "n8n-community-node-package",
