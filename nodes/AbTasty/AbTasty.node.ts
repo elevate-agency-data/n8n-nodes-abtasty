@@ -364,7 +364,6 @@ export class AbTasty implements INodeType {
     });
 
     const accessToken = authResponse?.access_token;
-    console.log(accessToken);
     if (!accessToken) { throw new ApplicationError('Failed to retrieve access token.'); }
 		
 		// Traitement des opérations
@@ -573,12 +572,7 @@ export class AbTasty implements INodeType {
           };
         }
 
-        console.log('url : ' + url);
-        console.log('requestConf : ' + JSON.stringify(requestConf));
-
         const responseData = await this.helpers.request(requestConf);
-
-        console.log('responseData : ' + responseData);
 
 				if (typeof responseData === 'string') {
           const trimmed = responseData.trim();
